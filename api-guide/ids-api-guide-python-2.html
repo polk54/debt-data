@@ -13123,9 +13123,10 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Date: 05/22/2019 <br>
+<p>Date: 02/26/2020 <br>
 <a href="https://datacatalog.worldbank.org/dataset/international-debt-statistics">Data source</a><br>
-<a href="https://datahelpdesk.worldbank.org/knowledgebase/topics/125589-developer-information">Developer Information</a></p>
+<a href="https://datahelpdesk.worldbank.org/knowledgebase/topics/125589-developer-information">Developer Information</a><br>
+<a href="https://github.com/worldbank/debt-data/tree/master/api-guide">GitHub</a></p>
 
 </div>
 </div>
@@ -13152,7 +13153,7 @@ div#notebook {
 <ul>
 <li><a href="https://pandas.pydata.org/">pandas</a>: Data analysis</li>
 <li><a href="https://www.numpy.org/">numpy</a>: Data analysis</li>
-<li><a href="https://wbdata.readthedocs.io/en/latest/#">datetime</a>: Parsing dates</li>
+<li><a href="https://docs.python.org/3.5/library/datetime.html">datetime</a>: Parsing dates</li>
 <li><a href="https://wbdata.readthedocs.io/en/latest/#">wbdata</a>: World Bank Data API wrapper</li>
 <li><a href="https://plot.ly/python/">plotly</a>: Data visualization</li>
 </ul>
@@ -13163,7 +13164,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Importing packages</span>
@@ -13189,6 +13190,7 @@ div#notebook {
 <li><strong>Indicator(s)</strong>: The indicator code(s) for the data</li>
 <li><strong>Location(s)</strong>: The location code(s) for the countries, regions, or income level categories</li>
 <li><strong>Time</strong>: Years</li>
+<li><strong>Source</strong>: <a href="https://datahelpdesk.worldbank.org/knowledgebase/articles/1886686-advanced-data-api-queries">The World Bank API source</a></li>
 </ul>
 
 </div>
@@ -13197,17 +13199,17 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Indicator(s)">Indicator(s)<a class="anchor-link" href="#Indicator(s)">&#182;</a></h4><p>In this guide, we will be looking at "long-term external debt stock" from the IDS database. To find the indicator for the data in which you're interested, you can either explore the <a href="https://datacatalog.worldbank.org/">World Bank data catalog</a> or use an API query as outlined in <a href="https://worldbank.github.io/debt-data/api-guide/ids-api-guide-python-1.html">Part 1</a> of this series. The IDS indicators are also conveniently stored as a spreadsheet (LINK NEEDED) in this repo.</p>
+<h4 id="Indicator(s)">Indicator(s)<a class="anchor-link" href="#Indicator(s)">&#182;</a></h4><p>In this guide, we will be looking at "long-term external debt stock" from the IDS database. To find the indicator for the data in which you're interested, you can either explore the <a href="https://datacatalog.worldbank.org/dataset/international-debt-statistics">World Bank data catalog</a> or use an API query as outlined in <a href="https://worldbank.github.io/debt-data/api-guide/ids-api-guide-python-1.html">Part 1</a> of this series. You can also view the IDS indicators and codes in their hierarchical order on our <a href="http://datatopics.worldbank.org/debt/ids/">data tables</a>. The Analytical view shows the select indicators from the IDS publication and the Standard view shows all available indicators.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Selecting the indictor</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Selecting the indicator</span>
 <span class="n">indicatorSelection</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;DT.DOD.DLXF.CD&quot;</span><span class="p">:</span><span class="s2">&quot;ExternalDebtStock&quot;</span><span class="p">}</span>
 </pre></div>
 
@@ -13227,7 +13229,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Location(s)">Location(s)<a class="anchor-link" href="#Location(s)">&#182;</a></h4><p>To select a location by country, region, or income level category you will need to know its 2 or 3 letter code. To figure out what this code is, you can either use an API query as outlined in <a href="https://worldbank.github.io/debt-data/api-guide/ids-api-guide-python-1.html">Part 1</a> of this series or use the convenient <a href="https://github.com/worldbank/debt-data/blob/master/location-codes.csv">location-codes csv</a>* in this repo.</p>
+<h4 id="Location(s)">Location(s)<a class="anchor-link" href="#Location(s)">&#182;</a></h4><p>To select a location by country, region, or income level category you will need to know its 2 or 3 letter code. To figure out what this code is, you can either use an API query as outlined in <a href="https://worldbank.github.io/debt-data/api-guide/ids-api-guide-python-1.html">Part 1</a> of this series or use the convenient <a href="https://github.com/worldbank/debt-data/blob/master/api-guide/location-codes.csv">location-codes csv</a>* in this repo.</p>
 <p>We will select regional aggregates (these exclude high-income countries):</p>
 <ul>
 <li>ECA: Europe &amp; Central Asia</li>
@@ -13237,13 +13239,13 @@ div#notebook {
 <li>MNA: Middle East &amp; North Africa</li>
 <li>EAP: East Asia &amp; Pacific</li>
 </ul>
-<h6 id="*The-location-codes-csv-was-created-using-the-API-query:-http://api.worldbank.org/v2/sources/2/country/data">*The location-codes csv was created using the API query: <a href="http://api.worldbank.org/v2/sources/2/country/data">http://api.worldbank.org/v2/sources/2/country/data</a><a class="anchor-link" href="#*The-location-codes-csv-was-created-using-the-API-query:-http://api.worldbank.org/v2/sources/2/country/data">&#182;</a></h6>
+<h6 id="*The-location-codes-csv-was-created-using-the-API-query:-http://api.worldbank.org/v2/country?per_page=500&amp;format=json&amp;source=6">*The location-codes csv was created using the API query: <a href="http://api.worldbank.org/v2/country?per_page=500&amp;format=json&amp;source=6">http://api.worldbank.org/v2/country?per_page=500&amp;format=json&amp;source=6</a><a class="anchor-link" href="#*The-location-codes-csv-was-created-using-the-API-query:-http://api.worldbank.org/v2/country?per_page=500&amp;format=json&amp;source=6">&#182;</a></h6>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Select the countries or regions</span>
@@ -13258,7 +13260,29 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Time">Time<a class="anchor-link" href="#Time">&#182;</a></h4><p>Here you will select the time frame for your data series. The format for the date is year, month, day. We are selecting data from 2008 to 2017.</p>
+<h4 id="Time">Time<a class="anchor-link" href="#Time">&#182;</a></h4><p>Here you will select the time frame for your data series. The format for the date is year, month, day. We are selecting data from 2009 to 2018.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Selecting the time frame</span>
+<span class="n">timeSelection</span> <span class="o">=</span> <span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2009</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">31</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Source">Source<a class="anchor-link" href="#Source">&#182;</a></h4><p>The World Bank Data API has numerous sources, including one specific to International Debt Statistics. As identified in <a href="https://worldbank.github.io/debt-data/api-guide/ids-api-guide-python-1.html">Part 1</a>, IDS has a source ID of 6.</p>
 
 </div>
 </div>
@@ -13268,11 +13292,30 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Selecting the time frame</span>
-<span class="n">timeSelection</span> <span class="o">=</span> <span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2008</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2017</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">31</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">IDS</span> <span class="o">=</span> <span class="n">wbdata</span><span class="o">.</span><span class="n">get_source</span><span class="p">(</span><span class="n">source_id</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  id  name
+----  -----------------------------
+   6  International Debt Statistics
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -13287,7 +13330,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In this step, we will retrieve the data using the World Bank Data API call. The package "wbdata" can request information from the World Bank database as a dictionary containing full metadata or as a pandas DataFrame. In this example, we will request the data, with the parameters outlined above, as a pandas DataFrame.</p>
+<p>In this step, we will retrieve the data using the World Bank Data API call. The package "wbdata," created by Oliver Sherouse, can request information from the World Bank database as a dictionary containing full metadata or as a pandas DataFrame. In this example, we will request the data, with the parameters outlined above, as a pandas DataFrame.</p>
 
 </div>
 </div>
@@ -13298,7 +13341,8 @@ div#notebook {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Making the API call and assigning the resulting DataFrame to &quot;EXD&quot;</span>
-<span class="n">EXD</span> <span class="o">=</span> <span class="n">wbdata</span><span class="o">.</span><span class="n">get_dataframe</span><span class="p">(</span><span class="n">indicatorSelection</span><span class="p">,</span> 
+<span class="n">EXD</span> <span class="o">=</span> <span class="n">wbdata</span><span class="o">.</span><span class="n">get_dataframe</span><span class="p">(</span><span class="n">indicatorSelection</span><span class="p">,</span>
+                            <span class="n">source</span><span class="o">=</span><span class="n">IDS</span><span class="p">,</span>
                             <span class="n">country</span> <span class="o">=</span> <span class="n">locationSelection</span><span class="p">,</span> 
                             <span class="n">data_date</span> <span class="o">=</span> <span class="n">timeSelection</span><span class="p">,</span> 
                             <span class="n">convert_date</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
@@ -13342,11 +13386,11 @@ div#notebook {
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>                                                  ExternalDebtStock
 country                                     date                   
-East Asia &amp; Pacific (excluding high income) 2017       1.263986e+12
-                                            2016       1.158415e+12
-                                            2015       1.035285e+12
-                                            2014       1.029315e+12
-                                            2013       8.397770e+11
+East Asia &amp; Pacific (excluding high income) 2018       1.391850e+12
+                                            2017       1.285327e+12
+                                            2016       1.172696e+12
+                                            2015       1.036149e+12
+                                            2014       1.040363e+12
 </pre>
 </div>
 </div>
@@ -13358,7 +13402,7 @@ East Asia &amp; Pacific (excluding high income) 2017       1.263986e+12
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="4.-Explore-the-data!">4. Explore the data!<a class="anchor-link" href="#4.-Explore-the-data!">&#182;</a></h2><p>Congratulations! At this point you should have the <strong>long-term external debt stock</strong> for <strong>regions</strong> (excluding high-income economies) from <strong>2008 - 2017</strong> all in a DataFrame called "EXD."</p>
+<h2 id="4.-Explore-the-data!">4. Explore the data!<a class="anchor-link" href="#4.-Explore-the-data!">&#182;</a></h2><p>Congratulations! At this point you should have the <strong>long-term external debt stock</strong> for <strong>regions</strong> (excluding high-income economies) from <strong>2009 - 2018</strong> all in a DataFrame called "EXD."</p>
 <p>Now we can do the following:</p>
 <ul>
 <li><strong>Data Cleaning</strong>: Clean up the format to use in a table or populate a visualization</li>
@@ -13403,7 +13447,7 @@ East Asia &amp; Pacific (excluding high income) 2017       1.263986e+12
 <div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Creating a function that will change units to billions and round to 0 decimal point</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Creating a function that will change units to billions and round to 0 decimal places</span>
 <span class="k">def</span> <span class="nf">formatNum</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">/</span><span class="mi">1000000000</span>
     <span class="n">z</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
@@ -13421,14 +13465,14 @@ East Asia &amp; Pacific (excluding high income) 2017       1.263986e+12
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>These next two sections of code will clean up the naming of headers and regions. First, it will rename the column headers. Second, it will remove the redundant "(excluding high income)" from the region names. We can instead include that information in the title of the legend.</p>
+<p>These next two sections of code will clean up the naming of headers and regions. First, it will rename the column headers. Second, it will remove the redundant "(excluding high income)" from the region names. We can instead include that information in the title of the chart.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Renaming column headers</span>
@@ -13445,7 +13489,7 @@ East Asia &amp; Pacific (excluding high income) 2017       1.263986e+12
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Remove the &quot;(excluding high income)&quot; from each of the region names</span>
@@ -13467,7 +13511,7 @@ East Asia &amp; Pacific (excluding high income) 2017       1.263986e+12
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">EXDclean</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
@@ -13488,11 +13532,11 @@ East Asia &amp; Pacific (excluding high income) 2017       1.263986e+12
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>                 Region  Year  ExternalDebtStock
-0  East Asia &amp; Pacific   2017             1264.0
-1  East Asia &amp; Pacific   2016             1158.0
-2  East Asia &amp; Pacific   2015             1035.0
-3  East Asia &amp; Pacific   2014             1029.0
-4  East Asia &amp; Pacific   2013              840.0
+0  East Asia &amp; Pacific   2018             1392.0
+1  East Asia &amp; Pacific   2017             1285.0
+2  East Asia &amp; Pacific   2016             1173.0
+3  East Asia &amp; Pacific   2015             1036.0
+4  East Asia &amp; Pacific   2014             1040.0
 </pre>
 </div>
 </div>
@@ -13504,14 +13548,14 @@ East Asia &amp; Pacific (excluding high income) 2017       1.263986e+12
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Data-Visualization">Data Visualization<a class="anchor-link" href="#Data-Visualization">&#182;</a></h4><p>Now use the package "plotly" to create a basic line graph, similar to one from the blog post on the <a href="http://blogs.worldbank.org/opendata/international-debt-statistics-2019-external-debt-stocks-end-2017-stood-over-7-trillion">launch of IDS 2019</a>.</p>
+<h4 id="Data-Visualization">Data Visualization<a class="anchor-link" href="#Data-Visualization">&#182;</a></h4><p>Now use the package "plotly" to create a basic line graph of the regional trends in long-term external debt stock.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Defining the data source</span>
@@ -13522,7 +13566,7 @@ East Asia &amp; Pacific (excluding high income) 2017       1.263986e+12
                 <span class="n">x</span><span class="o">=</span><span class="s2">&quot;Year&quot;</span><span class="p">,</span>
                 <span class="n">y</span><span class="o">=</span><span class="s2">&quot;ExternalDebtStock&quot;</span><span class="p">,</span>
                 <span class="n">color</span><span class="o">=</span><span class="s2">&quot;Region&quot;</span><span class="p">,</span>
-                <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Long-term External Debt Stock (USD billion)&quot;</span><span class="p">)</span>
+                <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Regional Long-term External Debt Stock (excluding High-Income countries)(USD billion)&quot;</span><span class="p">)</span>
 <span class="n">chart</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
                 <span class="n">plot_bgcolor</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
 
@@ -13579,20 +13623,20 @@ East Asia &amp; Pacific (excluding high income) 2017       1.263986e+12
 <div>
         
         
-            <div id="1da859c8-413a-44d7-abc8-20fd3edb7ec8" class="plotly-graph-div" style="height:600px; width:100%;"></div>
+            <div id="9365efad-8ffe-433b-a347-78a758f06e42" class="plotly-graph-div" style="height:600px; width:100%;"></div>
             <script type="text/javascript">
                 require(["plotly"], function(Plotly) {
                     window.PLOTLYENV=window.PLOTLYENV || {};
                     
-                if (document.getElementById("1da859c8-413a-44d7-abc8-20fd3edb7ec8")) {
+                if (document.getElementById("9365efad-8ffe-433b-a347-78a758f06e42")) {
                     Plotly.newPlot(
-                        '1da859c8-413a-44d7-abc8-20fd3edb7ec8',
-                        [{"hoverlabel": {"namelength": 0}, "hovertemplate": "Region=East Asia & Pacific <br>Year=%{x}<br>ExternalDebtStock=%{y}", "legendgroup": "Region=East Asia & Pacific ", "line": {"color": "#636efa", "dash": "solid"}, "mode": "lines", "name": "Region=East Asia & Pacific ", "showlegend": true, "type": "scatter", "x": ["2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008"], "xaxis": "x", "y": [1264.0, 1158.0, 1035.0, 1029.0, 840.0, 769.0, 640.0, 549.0, 494.0, 469.0], "yaxis": "y"}, {"hoverlabel": {"namelength": 0}, "hovertemplate": "Region=Europe & Central Asia <br>Year=%{x}<br>ExternalDebtStock=%{y}", "legendgroup": "Region=Europe & Central Asia ", "line": {"color": "#EF553B", "dash": "solid"}, "mode": "lines", "name": "Region=Europe & Central Asia ", "showlegend": true, "type": "scatter", "x": ["2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008"], "xaxis": "x", "y": [1292.0, 1279.0, 1200.0, 1265.0, 1350.0, 1194.0, 1113.0, 969.0, 950.0, 919.0], "yaxis": "y"}, {"hoverlabel": {"namelength": 0}, "hovertemplate": "Region=Latin America & Caribbean <br>Year=%{x}<br>ExternalDebtStock=%{y}", "legendgroup": "Region=Latin America & Caribbean ", "line": {"color": "#00cc96", "dash": "solid"}, "mode": "lines", "name": "Region=Latin America & Caribbean ", "showlegend": true, "type": "scatter", "x": ["2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008"], "xaxis": "x", "y": [1311.0, 1267.0, 1247.0, 1240.0, 1119.0, 1007.0, 887.0, 739.0, 626.0, 600.0], "yaxis": "y"}, {"hoverlabel": {"namelength": 0}, "hovertemplate": "Region=Middle East & North Africa <br>Year=%{x}<br>ExternalDebtStock=%{y}", "legendgroup": "Region=Middle East & North Africa ", "line": {"color": "#ab63fa", "dash": "solid"}, "mode": "lines", "name": "Region=Middle East & North Africa ", "showlegend": true, "type": "scatter", "x": ["2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008"], "xaxis": "x", "y": [225.0, 199.0, 184.0, 174.0, 177.0, 157.0, 145.0, 145.0, 141.0, 138.0], "yaxis": "y"}, {"hoverlabel": {"namelength": 0}, "hovertemplate": "Region=South Asia<br>Year=%{x}<br>ExternalDebtStock=%{y}", "legendgroup": "Region=South Asia", "line": {"color": "#FFA15A", "dash": "solid"}, "mode": "lines", "name": "Region=South Asia", "showlegend": true, "type": "scatter", "x": ["2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008"], "xaxis": "x", "y": [565.0, 501.0, 516.0, 486.0, 441.0, 403.0, 352.0, 323.0, 293.0, 267.0], "yaxis": "y"}, {"hoverlabel": {"namelength": 0}, "hovertemplate": "Region=Sub-Saharan Africa <br>Year=%{x}<br>ExternalDebtStock=%{y}", "legendgroup": "Region=Sub-Saharan Africa ", "line": {"color": "#19d3f3", "dash": "solid"}, "mode": "lines", "name": "Region=Sub-Saharan Africa ", "showlegend": true, "type": "scatter", "x": ["2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008"], "xaxis": "x", "y": [443.0, 380.0, 349.0, 333.0, 307.0, 281.0, 251.0, 225.0, 200.0, 179.0], "yaxis": "y"}],
-                        {"height": 600, "legend": {"tracegroupgap": 0}, "plot_bgcolor": "white", "template": {"data": {"bar": [{"error_x": {"color": "#2a3f5f"}, "error_y": {"color": "#2a3f5f"}, "marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "bar"}], "barpolar": [{"marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "barpolar"}], "carpet": [{"aaxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "baxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "type": "carpet"}], "choropleth": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "choropleth"}], "contour": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "contour"}], "contourcarpet": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "contourcarpet"}], "heatmap": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "heatmap"}], "heatmapgl": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "heatmapgl"}], "histogram": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "histogram"}], "histogram2d": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "histogram2d"}], "histogram2dcontour": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "histogram2dcontour"}], "mesh3d": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "mesh3d"}], "parcoords": [{"line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "parcoords"}], "scatter": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatter"}], "scatter3d": [{"line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatter3d"}], "scattercarpet": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattercarpet"}], "scattergeo": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattergeo"}], "scattergl": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattergl"}], "scattermapbox": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattermapbox"}], "scatterpolar": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterpolar"}], "scatterpolargl": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterpolargl"}], "scatterternary": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterternary"}], "surface": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "surface"}], "table": [{"cells": {"fill": {"color": "#EBF0F8"}, "line": {"color": "white"}}, "header": {"fill": {"color": "#C8D4E3"}, "line": {"color": "white"}}, "type": "table"}]}, "layout": {"annotationdefaults": {"arrowcolor": "#2a3f5f", "arrowhead": 0, "arrowwidth": 1}, "colorscale": {"diverging": [[0, "#8e0152"], [0.1, "#c51b7d"], [0.2, "#de77ae"], [0.3, "#f1b6da"], [0.4, "#fde0ef"], [0.5, "#f7f7f7"], [0.6, "#e6f5d0"], [0.7, "#b8e186"], [0.8, "#7fbc41"], [0.9, "#4d9221"], [1, "#276419"]], "sequential": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "sequentialminus": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}, "colorway": ["#636efa", "#EF553B", "#00cc96", "#ab63fa", "#FFA15A", "#19d3f3", "#FF6692", "#B6E880", "#FF97FF", "#FECB52"], "font": {"color": "#2a3f5f"}, "geo": {"bgcolor": "white", "lakecolor": "white", "landcolor": "#E5ECF6", "showlakes": true, "showland": true, "subunitcolor": "white"}, "hoverlabel": {"align": "left"}, "hovermode": "closest", "mapbox": {"style": "light"}, "paper_bgcolor": "white", "plot_bgcolor": "#E5ECF6", "polar": {"angularaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "bgcolor": "#E5ECF6", "radialaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "scene": {"xaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}, "yaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}, "zaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}}, "shapedefaults": {"line": {"color": "#2a3f5f"}}, "ternary": {"aaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "baxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "bgcolor": "#E5ECF6", "caxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "title": {"x": 0.05}, "xaxis": {"automargin": true, "gridcolor": "white", "linecolor": "white", "ticks": "", "zerolinecolor": "white", "zerolinewidth": 2}, "yaxis": {"automargin": true, "gridcolor": "white", "linecolor": "white", "ticks": "", "zerolinecolor": "white", "zerolinewidth": 2}}}, "title": {"text": "Long-term External Debt Stock (USD billion)"}, "xaxis": {"anchor": "y", "domain": [0.0, 0.98], "title": {"text": "Year"}}, "yaxis": {"anchor": "x", "domain": [0.0, 1.0], "title": {"text": "ExternalDebtStock"}}},
+                        '9365efad-8ffe-433b-a347-78a758f06e42',
+                        [{"hoverlabel": {"namelength": 0}, "hovertemplate": "Region=East Asia & Pacific <br>Year=%{x}<br>ExternalDebtStock=%{y}", "legendgroup": "Region=East Asia & Pacific ", "line": {"color": "#636efa", "dash": "solid"}, "mode": "lines", "name": "Region=East Asia & Pacific ", "showlegend": true, "type": "scatter", "x": ["2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009"], "xaxis": "x", "y": [1392.0, 1285.0, 1173.0, 1036.0, 1040.0, 856.0, 783.0, 646.0, 549.0, 494.0], "yaxis": "y"}, {"hoverlabel": {"namelength": 0}, "hovertemplate": "Region=Europe & Central Asia <br>Year=%{x}<br>ExternalDebtStock=%{y}", "legendgroup": "Region=Europe & Central Asia ", "line": {"color": "#EF553B", "dash": "solid"}, "mode": "lines", "name": "Region=Europe & Central Asia ", "showlegend": true, "type": "scatter", "x": ["2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009"], "xaxis": "x", "y": [1251.0, 1321.0, 1291.0, 1203.0, 1268.0, 1354.0, 1197.0, 1116.0, 972.0, 950.0], "yaxis": "y"}, {"hoverlabel": {"namelength": 0}, "hovertemplate": "Region=Latin America & Caribbean <br>Year=%{x}<br>ExternalDebtStock=%{y}", "legendgroup": "Region=Latin America & Caribbean ", "line": {"color": "#00cc96", "dash": "solid"}, "mode": "lines", "name": "Region=Latin America & Caribbean ", "showlegend": true, "type": "scatter", "x": ["2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009"], "xaxis": "x", "y": [1534.0, 1512.0, 1442.0, 1389.0, 1384.0, 1253.0, 1139.0, 1018.0, 861.0, 747.0], "yaxis": "y"}, {"hoverlabel": {"namelength": 0}, "hovertemplate": "Region=Middle East & North Africa <br>Year=%{x}<br>ExternalDebtStock=%{y}", "legendgroup": "Region=Middle East & North Africa ", "line": {"color": "#ab63fa", "dash": "solid"}, "mode": "lines", "name": "Region=Middle East & North Africa ", "showlegend": true, "type": "scatter", "x": ["2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009"], "xaxis": "x", "y": [252.0, 229.0, 202.0, 187.0, 175.0, 178.0, 158.0, 147.0, 146.0, 142.0], "yaxis": "y"}, {"hoverlabel": {"namelength": 0}, "hovertemplate": "Region=South Asia<br>Year=%{x}<br>ExternalDebtStock=%{y}", "legendgroup": "Region=South Asia", "line": {"color": "#FFA15A", "dash": "solid"}, "mode": "lines", "name": "Region=South Asia", "showlegend": true, "type": "scatter", "x": ["2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009"], "xaxis": "x", "y": [583.0, 564.0, 502.0, 517.0, 487.0, 442.0, 403.0, 352.0, 323.0, 293.0], "yaxis": "y"}, {"hoverlabel": {"namelength": 0}, "hovertemplate": "Region=Sub-Saharan Africa <br>Year=%{x}<br>ExternalDebtStock=%{y}", "legendgroup": "Region=Sub-Saharan Africa ", "line": {"color": "#19d3f3", "dash": "solid"}, "mode": "lines", "name": "Region=Sub-Saharan Africa ", "showlegend": true, "type": "scatter", "x": ["2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009"], "xaxis": "x", "y": [493.0, 464.0, 404.0, 373.0, 358.0, 329.0, 297.0, 262.0, 233.0, 205.0], "yaxis": "y"}],
+                        {"height": 600, "legend": {"tracegroupgap": 0}, "plot_bgcolor": "white", "template": {"data": {"bar": [{"error_x": {"color": "#2a3f5f"}, "error_y": {"color": "#2a3f5f"}, "marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "bar"}], "barpolar": [{"marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "barpolar"}], "carpet": [{"aaxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "baxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "type": "carpet"}], "choropleth": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "choropleth"}], "contour": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "contour"}], "contourcarpet": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "contourcarpet"}], "heatmap": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "heatmap"}], "heatmapgl": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "heatmapgl"}], "histogram": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "histogram"}], "histogram2d": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "histogram2d"}], "histogram2dcontour": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "histogram2dcontour"}], "mesh3d": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "mesh3d"}], "parcoords": [{"line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "parcoords"}], "scatter": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatter"}], "scatter3d": [{"line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatter3d"}], "scattercarpet": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattercarpet"}], "scattergeo": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattergeo"}], "scattergl": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattergl"}], "scattermapbox": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattermapbox"}], "scatterpolar": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterpolar"}], "scatterpolargl": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterpolargl"}], "scatterternary": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterternary"}], "surface": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "surface"}], "table": [{"cells": {"fill": {"color": "#EBF0F8"}, "line": {"color": "white"}}, "header": {"fill": {"color": "#C8D4E3"}, "line": {"color": "white"}}, "type": "table"}]}, "layout": {"annotationdefaults": {"arrowcolor": "#2a3f5f", "arrowhead": 0, "arrowwidth": 1}, "colorscale": {"diverging": [[0, "#8e0152"], [0.1, "#c51b7d"], [0.2, "#de77ae"], [0.3, "#f1b6da"], [0.4, "#fde0ef"], [0.5, "#f7f7f7"], [0.6, "#e6f5d0"], [0.7, "#b8e186"], [0.8, "#7fbc41"], [0.9, "#4d9221"], [1, "#276419"]], "sequential": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "sequentialminus": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}, "colorway": ["#636efa", "#EF553B", "#00cc96", "#ab63fa", "#FFA15A", "#19d3f3", "#FF6692", "#B6E880", "#FF97FF", "#FECB52"], "font": {"color": "#2a3f5f"}, "geo": {"bgcolor": "white", "lakecolor": "white", "landcolor": "#E5ECF6", "showlakes": true, "showland": true, "subunitcolor": "white"}, "hoverlabel": {"align": "left"}, "hovermode": "closest", "mapbox": {"style": "light"}, "paper_bgcolor": "white", "plot_bgcolor": "#E5ECF6", "polar": {"angularaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "bgcolor": "#E5ECF6", "radialaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "scene": {"xaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}, "yaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}, "zaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}}, "shapedefaults": {"line": {"color": "#2a3f5f"}}, "ternary": {"aaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "baxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "bgcolor": "#E5ECF6", "caxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "title": {"x": 0.05}, "xaxis": {"automargin": true, "gridcolor": "white", "linecolor": "white", "ticks": "", "zerolinecolor": "white", "zerolinewidth": 2}, "yaxis": {"automargin": true, "gridcolor": "white", "linecolor": "white", "ticks": "", "zerolinecolor": "white", "zerolinewidth": 2}}}, "title": {"text": "Regional Long-term External Debt Stock (excluding High-Income countries)(USD billion)"}, "xaxis": {"anchor": "y", "domain": [0.0, 0.98], "title": {"text": "Year"}}, "yaxis": {"anchor": "x", "domain": [0.0, 1.0], "title": {"text": "ExternalDebtStock"}}},
                         {"responsive": true}
                     ).then(function(){
                             
-var gd = document.getElementById('1da859c8-413a-44d7-abc8-20fd3edb7ec8');
+var gd = document.getElementById('9365efad-8ffe-433b-a347-78a758f06e42');
 var x = new MutationObserver(function (mutations, observer) {{
         var display = window.getComputedStyle(gd).display;
         if (!display || display === 'none') {{
